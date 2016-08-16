@@ -12,7 +12,7 @@
 
 <body class="close-all-panels" onload="load_map();">
 	<div id='printoutPanel'></div>
-	<div id='map' style='width: 100vw; height: 100vh;'></div>
+	<div id='map'></div>
 	<!-- Fixed navbar -->
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container-fluid">
@@ -27,7 +27,7 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
+            <li class="active"><a href="#">Map</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
             <li class="dropdown">
@@ -44,11 +44,12 @@
             </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><button ak-toggle="#bottom-panel">Open</button></li>
+						<li><button ak-toggle="#bottom-panel">Open</button></li>
+						<li><button ak-toggle="#left-panel">Open left</button></li>
             <li>
 							<button data-keyboard="true" type="button" class="btn btn-info btn-md" id="myBtn2">Modal without Overlay (backdrop:false)</button>
 						</li>
-            <li class="active"><a href="./">Refresh<span class="sr-only">(current)</span></a></li>
+            <li class="active hidden-xs hidden-sm"><a href="./"><i class="fa fa-refresh" aria-hidden="true"></i><span class="sr-only">(current)</span></a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -82,7 +83,16 @@
 </div>
 
 
-	<div class="ipanel ipanel-bottom ipanle-active" id="bottom-panel">
+	<div class="ipanel ipanel-bottom" id="bottom-panel">
+		<span class="ipanel-close-button"><i class="fa fa-times" aria-hidden="true"></i></span>
+		dsflkjadslfkjasdfasdadsfasdf
+		asdfljasdfljasdlfjalksdjf
+		asdflkasdflkjasldkfj
+		asdf;lkadslkf<br>
+		asdf;lkadslkf<br>
+	</div>
+
+	<div class="ipanel ipanel-left" id="left-panel">
 		<span class="ipanel-close-button"><i class="fa fa-times" aria-hidden="true"></i></span>
 	</div>
 

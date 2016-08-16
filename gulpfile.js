@@ -45,8 +45,10 @@ gulp.task('sass', function() { 
 
 gulp.task('js', function() {
   return gulp.src([config.bowerDir+'/jquery/dist/jquery.js',
-                  config.bowerDir+'/bootstrap-sass-official/assets/javascripts/bootstrap.js',
-                  config.jsFiles
+                   config.bowerDir+'/bootstrap-sass-official/assets/javascripts/bootstrap.js',
+                   config.bowerDir+'/hammerjs/hammer.js',
+                   config.bowerDir+'/jquery-hammerjs/jquery.hammer.js',
+                   config.jsFiles
 
     ])
     .pipe(sourcemaps.init())

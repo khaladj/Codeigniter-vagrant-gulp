@@ -1,14 +1,24 @@
-$panel-background:#fff;
+$panel_background:#fff;
+$menubar_height:51px;
 .ipanel{
   position:absolute;
-  background-color: $panel-background;
-  z-index:1;
+  background-color: $panel_background;
+  z-index:1040;
+  padding:20px;
   &.ipanel-bottom {
     bottom: -100%;
     left: 0;
     width: 100%;
-    height: 40%;
+    min-height: 65%;
+    max-height: 65%;
     box-shadow: 2px -3px 10px rgba(0, 0, 0, 0.25);
+  }
+  &.ipanel-left {
+    bottom:0;
+    left: -100%;
+    width: 300px;
+    height: calc(100% - #{$menubar_height});
+    box-shadow: 3px 0px 10px rgba(0, 0, 0, 0.25);
   }
   .ipanel-close-button {
     position: absolute;
@@ -18,6 +28,6 @@ $panel-background:#fff;
     font-size: 1.5em;
     line-height: 1;
     cursor: pointer; }
-    .close-button:hover {
-      color: #333; }
+    .ipanel-close-button:hover {
+      color: #333!important; }
 }
