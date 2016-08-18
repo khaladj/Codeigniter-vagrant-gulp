@@ -21,7 +21,8 @@ gulp.task('bower', function() { 
 });
 
 gulp.task('icons', function() { 
-    return gulp.src(config.bowerDir + '/fontawesome/fonts/**.*') 
+    return gulp.src([config.bowerDir + '/fontawesome/fonts/**.*',
+                     config.bowerDir + '/bootstrap-sass-official/assets/fonts/bootstrap/**.*'  ]) 
         .pipe(gulp.dest('./assets/fonts')); 
 });
 

@@ -1,11 +1,14 @@
 $panel_background:#fff;
-$menubar_height:51px;
+$menubar_height:49px;
+$font-color : #fff;
+
 .ipanel{
   position:absolute;
   background-color: $panel_background;
   z-index:1040;
   padding:20px;
   padding-top: 30px;
+  overflow: scroll;
 
   &.ipanel-bottom {
     bottom: -100%;
@@ -39,10 +42,10 @@ $menubar_height:51px;
         right: -100%;
         width: 300px;
         height: calc(100% - #{$menubar_height});
-        box-shadow: 3px 0px 10px rgba(0, 0, 0, 0.25);
+        box-shadow: -3px 0 10px rgba(0, 0, 0, 0.25);
       .ipanel-close-button{left:1rem!important}}
 
 
     .ipanel-close-button:hover {
-      color: #333!important; }
+      color:darken( $font-color, 20% )}
 }

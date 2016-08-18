@@ -1,26 +1,40 @@
+$alink-color : #fff;
+
 body{
   overflow: hidden;}
 
+.bordered{
+  border:1px solid #fff;
+}
+
+a {
+  color: $alink-color;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    color: darken( $alink-color, 20% );
+    text-decoration: none;
+  }
+}
+
+
 header{
-  $font-color : #fff;
   position: absolute;
   background: #3b5998;
   width: 100%;
   padding:10px;
-  color:$font-color;
-  i{
-    font-size: 20px!important;
-    padding:5px 15px;}
-  a{
-    color:#fff;
-    cursor: pointer;
-    :hover{
-      color:darken( $font-color, 20% )}}
-}
+  color:$alink-color;
+  .center{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;}}
 
 .NavBar_zoomControlContainer,
 .NavBar_compassControlContainer{
-  top:80px!important;}
+  top:60px!important;}
 
 .NavBar_modeSelectorControlContainer{
   display: none;}

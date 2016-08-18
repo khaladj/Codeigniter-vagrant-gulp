@@ -14,17 +14,26 @@
 	<div id='printoutPanel'></div>
 	<div id='map'></div>
 
-	<header class="bordered">
+	<header>
 			<div class="row">
 				<div class="col-xs-2 col-md-1">
-					<a ak-toggle="#menu-panel" data-toggle="tooltip" data-placement="bottom" title="Menu"><i class="fa fa-bars" aria-hidden="true"></i></a>
+					<a class="center"  ak-toggle="#menu-panel" data-toggle="tooltip" data-placement="bottom" title="Menu"><i class="fa fa-2x fa-bars" aria-hidden="true"></i></a>
 				</div>
-				<div class="col-xs-10 col-md-11">
+				<div class="col-xs-6 col-md-9">
 				</div>
+
+				<div class="col-xs-2 col-md-1">
+						<a class="center" ak-toggle="#assets-panel" data-toggle="tooltip" data-placement="bottom" title="Tracking"><i class="fa fa-2x fa-square-o" aria-hidden="true"></i></a>
+				</div>
+
+				<div class="col-xs-2 col-md-1">
+					<a class="center" ak-toggle="#assets-panel" data-toggle="tooltip" data-placement="bottom" title="Tracking"><span class="glyphicon glyphicon-off"></span></a>
+				</div>
+			</div>
 	</header>
 
 
-	<div class="ipanel ipanel-bottom" id="bottom-panel">
+	<div class="ipanel hidden ipanel-bottom" id="bottom-panel">
 		<span class="ipanel-close-button"><i class="fa fa-times" aria-hidden="true"></i></span>
 		dsflkjadslfkjasdfasdadsfasdf
 		asdfljasdfljasdlfjalksdjf
@@ -33,12 +42,12 @@
 		asdf;lkadslkf<br>
 	</div>
 
-	<div class="ipanel ipanel-right" id="right-panel">
+	<div class="ipanel ipanel-left hidden" id="menu-panel">
 		<span class="ipanel-close-button"><i class="fa fa-times" aria-hidden="true"></i></span>
 		Menu
 	</div>
 
-	<div class="ipanel ipanel-left" id="menu-panel">
+	<div class="ipanel ipanel-right hidden" id="assets-panel">
 		<span class="ipanel-close-button"><i class="fa fa-times" aria-hidden="true"></i></span>
 		Left
 	</div>

@@ -14283,7 +14283,11 @@ function loadMap(){
 }
 
 $(function () {
-  $('[data-toggle="tooltip"]').tooltip();
+	var isTouchDevice =function(){
+    return true == ("ontouchstart" in window || window.DocumentTouch && document instanceof DocumentTouch);
+}
+	if(isTouchDevice()===false)
+  	$('[data-toggle="tooltip"]').tooltip();
   getMap();
 })
 
@@ -14306,16 +14310,28 @@ jQuery.iPanel = function() {
                 var dir = iPanelDir($(this));
                 // if clicking / touching the same href to avoid repopen
                 if (dir !== cdr )
-                  iPanel.toggle($(this),dir);
+                   iPanel.close($(this),dir);
           });
         },
 
-        toggle: function(el,dir){
+        close: function(el,dir){
           var op = {};
-           op[dir] = !$( el ).hasClass('ipanel-active') ? "0" : "-100%";
+           op[dir] = "-100%";
            $( el ).
-             animate(op,"slow").
-             toggleClass("ipanel-active");
+             animate(op,"slow",function(){
+                $(this)
+                .removeClass("ipanel-active").
+                 addClass("hidden")});
+        },
+
+        open: function(el,dir){
+          var op = {};
+           op[dir] = "0";
+           $( el ).
+             removeClass("hidden").
+             animate(op,"slow",function(){
+                $(this)
+                .addClass("ipanel-active")});
         }
     }
 
@@ -14337,15 +14353,18 @@ jQuery.iPanel = function() {
 
         $("button ,a").on("click",function(){
           var el  = $(this).attr("ak-toggle");
-          var dir = iPanelDir(el);
-          iPanel.closeAll(dir);
-          iPanel.toggle(el,dir);
+          var directions = iPanelDir(el);
+          if ($(el).hasClass("hidden") ){
+              iPanel.closeAll(directions);
+              iPanel.open(el,directions);
+          }else{
+              iPanel.close(el,directions);}
         });
 
         closeBtn.on("click",function(){
           var dir = iPanelDir($(this).parent());
           var el  = '#'+$(this).parent().attr("id");
-          iPanel.toggle(el,dir);
+          iPanel.close(el,dir);
         });
 
 

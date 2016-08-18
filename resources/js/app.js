@@ -16,6 +16,10 @@ function loadMap(){
 }
 
 $(function () {
-  $('[data-toggle="tooltip"]').tooltip();
+	var isTouchDevice =function(){
+    return true == ("ontouchstart" in window || window.DocumentTouch && document instanceof DocumentTouch);
+}
+	if(isTouchDevice()===false)
+  	$('[data-toggle="tooltip"]').tooltip();
   getMap();
 })
