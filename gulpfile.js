@@ -11,7 +11,7 @@ var gulp = require('gulp'), 
 var config = {
      sassPath: './resources/sass',
      bowerDir: './bower_components' ,
-    jsFiles :'./resources/js/**/*.js',
+    jsFiles :'./resources/js/*.js',
     jsDest : './assets/js'
 }
 
