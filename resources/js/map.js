@@ -10,7 +10,7 @@ $(function (){
 				showBreadcrumb: false,
 				mapTypeId: Microsoft.Maps.MapTypeId.auto,
 				enableSearchLogo: false	,
-				zoom: 13
+				zoom: 12
 		})}})});
 
 
