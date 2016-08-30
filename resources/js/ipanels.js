@@ -10,6 +10,8 @@
 */
 $(function(){
 
+'use strict';
+
 jQuery.iPanel = function() {
     var iPanel={
         closeAll:function(cdr){
@@ -87,7 +89,6 @@ jQuery.iPanel = function() {
          });
 
     }
-
     handleEvents();
   }
 

@@ -1,36 +1,32 @@
 $alink-color : #fff;
+$breakpoint-tablet: 768px;
+
 
 body{
   overflow: hidden;}
-
-.bordered{
-  border:1px solid #fff;
-}
-
-a {
-  color: $alink-color;
-  text-decoration: none;
-  cursor: pointer;
-
-  &:hover,
-  &:focus {
-    color: darken( $alink-color, 20% );
-    text-decoration: none;
-  }
-}
-
 
 header{
   position: absolute;
   background: #3b5998;
   width: 100%;
-  padding:10px;
+  padding:0.8rem;
   color:$alink-color;
+  .company-title{
+    font-size: 1.6rem;
+    padding-top:5px;}
   .center{
     display: block;
     margin-left: auto;
     margin-right: auto;
-    text-align: center;}}
+    text-align: center;}
+    a{
+      color: $alink-color;
+      text-decoration: none;
+      cursor: pointer;
+      &:hover,
+      &:focus {
+        color: darken( $alink-color, 20% );
+        text-decoration: none;}}}
 
 .NavBar_zoomControlContainer,
 .NavBar_compassControlContainer{
@@ -38,3 +34,40 @@ header{
 
 .NavBar_modeSelectorControlContainer{
   display: none;}
+
+.pad-top{
+   padding-top: 5px!important;
+   &.pad-1x{
+     padding-top:10px;
+   }
+}
+.no-padding{
+    padding:0!important;}
+
+.bordered{
+  border:1px solid #fff;}
+
+.nav-pills-eaglei{
+    margin-top:30px;}
+
+.panel-heading {
+    padding: 10px 15px;
+}
+
+.panel-footer {
+	padding: 2px 15px;
+	color: #A0A0A0;
+}
+
+.profile-img {
+	width: 120px;
+	height: 120px;
+	margin: 0 auto 20px;
+	display: block;}
+
+@media (min-width: $breakpoint-tablet) {
+  header{
+    .company-title{
+      font-size: 2rem;
+      padding-top:2px;}}
+}

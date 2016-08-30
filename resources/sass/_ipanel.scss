@@ -1,15 +1,13 @@
 $panel_background:#fff;
-$menubar_height:49px;
+$menubar_height:4.6rem;
 $font-color : #fff;
 
 .ipanel{
-  position:absolute;
+  position:fixed;
   background-color: $panel_background;
   z-index:1040;
   padding:20px;
-  padding-top: 30px;
-  overflow: scroll;
-
+  -webkit-overflow-scrolling: touch;
   &.ipanel-bottom {
     bottom: -100%;
     left: 0;
@@ -38,7 +36,7 @@ $font-color : #fff;
 
 
     &.ipanel-right {
-        bottom:0;
+        bottom: 0;
         right: -100%;
         width: 300px;
         height: calc(100% - #{$menubar_height});

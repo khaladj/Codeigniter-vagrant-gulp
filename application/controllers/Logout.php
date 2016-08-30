@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Map extends CI_Controller {
+class Logout extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -23,16 +23,7 @@ class Map extends CI_Controller {
 		parent::__construct();}
 
  function index(){
- 	 if($this->session->userdata('logged_in')){
- 		 $session_data = $this->session->userdata('logged_in');
- 		 $data['username'] = $session_data['username'];
- 		 $this->load->view('map', $data);
-	 }else{
- 		 //If no session, redirect to login page
- 		 redirect('login', 'refresh');}}
-
-
- function getdata(){
-	 if (!$this->input->is_ajax_request()) {
- 				exit('{"code":0,"message":"Bad request"}');}
-	 echo $this->encryption->encrypt('{"code":0,"message":"Bad request"}');}}
+   $this->session->unset_userdata('logged_in');
+   session_destroy();
+   redirect('login', 'refresh');
+ }}
