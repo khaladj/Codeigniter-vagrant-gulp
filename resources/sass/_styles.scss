@@ -1,101 +1,73 @@
-$bgDefault      : #428bca;
-$bgHighlight    : navy;
-$colDefault     : #fff;
-$colHighlight   : #fff;
+$alink-color : #fff;
+$breakpoint-tablet: 768px;
+
 
 body{
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale; 
+  overflow: hidden;}
+
+header{
+  position: absolute;
+  background: #3b5998;
+  width: 100%;
+  padding:0.8rem;
+  color:$alink-color;
+  .company-title{
+    font-size: 1.6rem;
+    padding-top:5px;}
+  .center{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;}
+    a{
+      color: $alink-color;
+      text-decoration: none;
+      cursor: pointer;
+      &:hover,
+      &:focus {
+        color: darken( $alink-color, 20% );
+        text-decoration: none;}}}
+
+.NavBar_zoomControlContainer,
+.NavBar_compassControlContainer{
+  top:60px!important;}
+
+.NavBar_modeSelectorControlContainer{
+  display: none;}
+
+.pad-top{
+   padding-top: 5px!important;
+   &.pad-1x{
+     padding-top:10px;
+   }
+}
+.no-padding{
+    padding:0!important;}
+
+.bordered{
+  border:1px solid #fff;}
+
+.nav-pills-eaglei{
+    margin-top:30px;}
+
+.panel-heading {
+    padding: 10px 15px;
 }
 
-.navbar-default {
-  background-color: $bgDefault;
-  border-color: $bgHighlight;
-  .navbar-brand {
-    color: $colDefault;
-    &:hover, &:focus {
-      color: $colHighlight; }}
-  .navbar-text {
-    color: $colDefault; }
-  .navbar-nav {
-    > li {
-      > a {
-        color: $colDefault;
-        &:hover,  &:focus {
-          color: $colHighlight; }}}
-    > .active {
-      > a, > a:hover, > a:focus {
-        color: $colHighlight;
-        background-color: $bgHighlight; }}
-    > .open {
-      > a, > a:hover, > a:focus {
-        color: $colHighlight;
-        background-color: $bgHighlight; }}}
-  .navbar-toggle {
-    border-color: $bgHighlight;
-    &:hover, &:focus {
-      background-color: $bgHighlight; }
-    .icon-bar {
-      background-color: $colDefault; }}
-  .navbar-collapse,
-  .navbar-form {
-    border-color: $colDefault; }
-  .navbar-link {
-    color: $colDefault;
-    &:hover {
-      color: $colHighlight; }}}
-@media (max-width: 767px) {
-  .navbar-default .navbar-nav .open .dropdown-menu {
-    > li > a {
-      color: $colDefault;
-      &:hover, &:focus {
-        color: $colHighlight; }}
-    > .active {
-      > a, > a:hover, > a:focus, {
-        color: $colHighlight;
-        background-color: $bgHighlight; }}}
+.panel-footer {
+	padding: 2px 15px;
+	color: #A0A0A0;
 }
 
+.profile-img {
+	width: 120px;
+	height: 120px;
+	margin: 0 auto 20px;
+	display: block;}
 
-
-.modal-dialog {
-  margin-top: 0;
-  margin-bottom: 0;
-  height: 100vh;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+@media (min-width: $breakpoint-tablet) {
+  header{
+    .company-title{
+      font-size: 2rem;
+      padding-top:2px;}}
 }
-
-.modal.fade .modal-dialog {
-  -webkit-transform: translate(0, -100%);
-          transform: translate(0, -100%);
-}
-.modal.in .modal-dialog {
-  -webkit-transform: translate(0, 0);
-          transform: translate(0, 0);
-}
-
-
-.modal-header {
-    padding:9px 15px;
-    border-bottom:1px solid #eee;
-    background-color: #0480be;
-    -webkit-border-top-left-radius: 5px;
-    -webkit-border-top-right-radius: 5px;
-    -moz-border-radius-topleft: 5px;
-    -moz-border-radius-topright: 5px;
-     border-top-left-radius: 5px;
-     border-top-right-radius: 5px;
-     color:#fff;
- }
