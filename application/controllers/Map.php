@@ -20,19 +20,44 @@ class Map extends CI_Controller {
 	 */
 
  function __construct(){
-		parent::__construct();}
+		parent::__construct();
+	  $this->load->model('tblprofiles','',TRUE);}
+
 
  function index(){
  	 if($this->session->userdata('logged_in')){
- 		 $session_data = $this->session->userdata('logged_in');
+
+ 		$session_data = $this->session->userdata('logged_in');
+		$profileid = $session_data['profileid'];
+		$profile = $this->tblprofiles->load($profileid);
+
  		 $data['username'] = $session_data['username'];
- 		 $this->load->view('map', $data);
+		 $data['profileid']=$profileid ;
+		 $data['profilename']= $profile[0]->name;
+		 $data['navbar']=true;
+		 $data['map']='active';
+		 $this->load->view('template/header',$data);
+		 $this->load->view('map', $data);
+		 $this->load->view('template/footer');
 	 }else{
  		 //If no session, redirect to login page
  		 redirect('login', 'refresh');}}
 
 
  function getdata(){
+	 if(!$this->session->userdata('logged_in')){
+		 redirect('login', 'refresh');}
+
 	 if (!$this->input->is_ajax_request()) {
  				exit('{"code":0,"message":"Bad request"}');}
-	 echo $this->encryption->encrypt('{"code":0,"message":"Bad request"}');}}
+	 echo $this->encryption->encrypt('{"code":0,"message":"Bad request"}');}
+
+
+ function getinfo(){
+	 if(!$this->session->userdata('logged_in')){
+		redirect('login', 'refresh');}
+
+	 if (!$this->input->is_ajax_request()) {
+ 				exit('{"code":0,"message":"Bad request"}');}
+	 echo " | ". heap() . " KB | " . round(memory_get_usage()/1000,2) . " KB | %" .round(sys_getloadavg()[0],2) ;
+ }}

@@ -7,7 +7,10 @@ class Login extends CI_Controller{
 
  function index(){
    $this->load->helper(array('form'));
+   $data['navbar']=false;
+   $this->load->view('template/header',$data);
    $this->load->view('login');
+   $this->load->view('template/footer');
  }
 
  function logout(){

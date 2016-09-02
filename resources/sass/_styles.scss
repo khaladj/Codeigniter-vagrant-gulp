@@ -3,7 +3,8 @@ $breakpoint-tablet: 768px;
 
 
 body{
-  overflow: hidden;}
+  overflow: hidden;
+  color:#777}
 
 header{
   position: absolute;
@@ -11,6 +12,7 @@ header{
   width: 100%;
   padding:0.8rem;
   color:$alink-color;
+  z-index: 1030;
   .company-title{
     font-size: 1.6rem;
     padding-top:5px;}
@@ -38,11 +40,13 @@ header{
 .pad-top{
    padding-top: 5px!important;
    &.pad-1x{
-     padding-top:10px;
-   }
-}
+     padding-top:10px;}}
+
+.gap-top{
+  padding-top: 20px;}
+
 .no-padding{
-    padding:0!important;}
+    padding:2px!important;}
 
 .bordered{
   border:1px solid #fff;}
@@ -64,6 +68,35 @@ header{
 	height: 120px;
 	margin: 0 auto 20px;
 	display: block;}
+
+
+.semi-bold{
+  font-weight: 500;
+  font-size: 110%;
+}
+
+
+.fa{
+  &.fa-dirction{
+    font-size: 20px;
+    line-height:22px!important;}}
+
+.#{$fa-css-prefix}-rotate-45r  { @include fa-icon-rotate(45deg, 1);  }
+.#{$fa-css-prefix}-rotate-45l  { @include fa-icon-rotate(-45deg, 1);  }
+
+.rotate-45-left:before {
+  -o-transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);}
+
+.rotate-45-right:before {
+  -o-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);}
+
+.clusterize-scroll{
+  max-height:100%!important;
+  overflow-x:hidden!important;}
 
 @media (min-width: $breakpoint-tablet) {
   header{

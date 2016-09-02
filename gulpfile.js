@@ -53,7 +53,8 @@ gulp.task('sass', function() { 
              loadPath: [
                  config.sassPath + '/app.scss',
                  config.bowerDir + '/bootstrap-sass-official/assets/stylesheets',
-                 config.bowerDir + '/font-awesome/scss',
+                config.bowerDir + '/font-awesome/scss',
+                config.bowerDir + '/clusterize/',
              ]
          }) 
             .on("error", notify.onError(function (error) {
@@ -71,6 +72,7 @@ gulp.task('js', function() {
                    config.bowerDir+'/bootstrap-sass-official/assets/javascripts/bootstrap.js',
                    config.bowerDir+'/hammerjs/hammer.js',
                    config.bowerDir+'/jquery-hammerjs/jquery.hammer.js',
+                   config.bowerDir+'/clusterize/clusterize.js',
                    config.jsFiles
 
     ])

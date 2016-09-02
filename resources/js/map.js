@@ -18,6 +18,8 @@ $(function (){
 $(function () {
 	'use strict';
 	var refreshTime =4000;
+
+
 	var goOffline = function(){
 		var offlineui = $(".offline-ui");
 		offlineui.
@@ -33,15 +35,19 @@ $(function () {
 				addClass("offline-ui-up")}
 
 
+  var updateInfo = function(data){
+    var memcpu = $(".offline-ui-content");
+    memcpu.html( data );
 
+  }
 	var isTouchDevice =function(){
 	      return true == ("ontouchstart" in window || window.DocumentTouch && document instanceof DocumentTouch)}
 
 	if(isTouchDevice()===false){
-	  	$('[data-toggle="tooltip"]').tooltip()}
+	  	$('[data-toggle="tooltip"]').tooltip();}
 
 
-	setInterval($.ajax,refreshTime, {
+	setInterval($.ajax,refreshTime , {
 				url: 'map/getdata',
 				success: function(data){
 					goOnline();
@@ -49,4 +55,20 @@ $(function () {
 				error: function(xhr){
 					goOffline();
 				}}/*args passed to $.ajax*/
-)})
+  )
+
+  setInterval($.ajax,refreshTime * 3, {
+        url: 'map/getinfo',
+        success: function(data){
+          updateInfo(data);
+        },
+        error: function(xhr){
+        }}/*args passed to $.ajax*/
+  )
+
+  var clusterize = new Clusterize({
+    rows_in_block:10,
+    scrollId: 'scrollArea',
+    contentId: 'contentArea'
+  });
+})
