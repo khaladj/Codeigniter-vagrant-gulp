@@ -6,7 +6,7 @@
 					<strong> Sign in to continue</strong>
 				</div>
 				<div class="panel-body">
-					<?php echo form_open('verifylogin'); ?>
+					<?php echo form_open('validatelogin'); ?>
 					<fieldset>
 						<div class="row">
 							<div class="center-block">

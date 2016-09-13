@@ -27,7 +27,7 @@ gulp.task('html', function(){
 
 gulp.task('browser-sync', function() {
 	browserSync.init({
-		proxy : 'http://localhost/my.eagleigps.com.local/index.php/',
+		proxy : 'http://192.168.2.127/my.eagleigps.com.local/index.php/',
 	});
 });
 

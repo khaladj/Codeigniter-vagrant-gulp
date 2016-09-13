@@ -1,10 +1,35 @@
 $alink-color : #fff;
 $breakpoint-tablet: 768px;
 
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
 
 body{
   overflow: hidden;
   color:#777}
+
+.sub-menu{
+    &:before{
+      content: " - ";}}
+
+hr.limited{
+    margin-bottom:1px!important;
+    margin-top:1px!important;
+    border-style: solid;}
+
+.map-toolbar{
+  position: absolute;
+  z-index: 1030;
+  width: 70px;
+  height: 70px;
+  background: transparent;
+  right:1%;
+  padding:0;
+  top:100px;}
 
 header{
   position: absolute;
@@ -14,13 +39,15 @@ header{
   color:$alink-color;
   z-index: 1030;
   .company-title{
-    font-size: 1.6rem;
+    font-size: 2rem;
     padding-top:5px;}
   .center{
     display: block;
     margin-left: auto;
     margin-right: auto;
     text-align: center;}
+    .pad-left{
+      padding-left: 10px;}
     a{
       color: $alink-color;
       text-decoration: none;
@@ -38,16 +65,12 @@ header{
   display: none;}
 
 .pad-top{
-   padding-top: 5px!important;
+   padding-top: 5px;
    &.pad-1x{
-     padding-top:10px;}}
+     padding-top:15px!important;}}
 
 .gap-top{
-  padding-top: 20px;}
-
-.no-padding{
-    padding:2px!important;}
-
+  margin-top: 20px;}
 .bordered{
   border:1px solid #fff;}
 
@@ -77,30 +100,108 @@ header{
 
 
 .fa{
-  &.fa-dirction{
+  &.fa-ix-bell{
     font-size: 20px;
-    line-height:22px!important;}}
+    padding-top: 7px;}
+  &.fa-ix{
+    font-size: 25px;
+    padding-left:0px;
+    padding-right:2px;
+    margin-top: 5px;
+    line-height:25px!important;}}
 
 .#{$fa-css-prefix}-rotate-45r  { @include fa-icon-rotate(45deg, 1);  }
 .#{$fa-css-prefix}-rotate-45l  { @include fa-icon-rotate(-45deg, 1);  }
 
 .rotate-45-left:before {
-  -o-transform: rotate(-45deg);
+  -ms-transform: rotate(7deg); /* IE 9 */
   -webkit-transform: rotate(-45deg);
   transform: rotate(-45deg);}
 
 .rotate-45-right:before {
-  -o-transform: rotate(45deg);
+  -ms-transform: rotate(7deg); /* IE 9 */
   -webkit-transform: rotate(45deg);
   transform: rotate(45deg);}
 
-.clusterize-scroll{
-  max-height:100%!important;
-  overflow-x:hidden!important;}
 
-@media (min-width: $breakpoint-tablet) {
-  header{
-    .company-title{
-      font-size: 2rem;
-      padding-top:2px;}}
+#menu-panel{
+  .clusterize-scroll{
+  min-height:100%!important;
+  overflow-x:hidden!important;}}
+
+
+#assets-panel{
+  .clusterize-scroll{
+  min-height:calc(100% - 70px)!important;
+  overflow-x:hidden!important;}}
+
+.searchclear{
+    position:absolute;
+    right:28px;
+    top:50px;
+    cursor:pointer;
+    color:#ccc;}
+
+
+
+.unit-list{
+cursor: pointer;
+padding-bottom: 4px;
+color:rgb(51, 122, 183);
+.unit-name{
+  font-size: 90%;}
+
+.bold{
+  font-weight:800!important;}
+a{
+  color:rgb(51, 122, 183);}
+&:hover{
+  color:darken(rgb(51, 122, 183),20%)!important;
+  background:#FAFAFA;}
+&.active-unit{
+  background:#d9edf7;
+  border-color: #d9edf7!important;
+  color:darken(rgb(51, 122, 183),20%)!important;}
+
+.show-details{
+  display:none;}
+&.border-bottom{
+  border-bottom: 1px solid #eee;}}
+
+.notification-icon {
+  .badge{
+    background-color: red!important;
+    position: absolute;
+    top:10px;
+    margin-left: -2px;
+  }
 }
+
+
+.dropdown-menu{
+        display: block;
+        position: static;
+        background-color:transparent;
+        border:0 none;
+        box-shadow:none;
+        margin-top:0;
+        position:static;
+        width:100%;
+    }
+    .navbar-nav .dropdown-menu > li > a,
+    .navbar-nav .dropdown-menu .dropdown-header {
+        padding:5px 15px 5px 25px;
+    }
+    .navbar-nav .dropdown-menu > li > a{
+        line-height:20px;
+    }
+    .navbar-default .navbar-nav .dropdown-menu > li > a{
+
+        color:#777;
+    }
+ a.dropdown-toggle .caret {
+    display: none;
+ }
+    .dropdown a.dropdown-toggle{
+        display:none;
+    }

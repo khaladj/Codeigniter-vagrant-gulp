@@ -14296,7 +14296,7 @@ if (typeof define === 'function' && define.amd) {
     var defaults = {
       item_height: 0,
       block_height: 0,
-      rows_in_block: 50,
+      rows_in_block: 10,
       rows_in_cluster: 0,
       cluster_height: 0,
       blocks_in_cluster: 4,
@@ -14654,35 +14654,44 @@ jQuery.iPanel = function() {
 
     var handleEvents = function(){
 
-        var closeBtn = $(".ipanel-close-button");
+      var closeBtn = $(".ipanel-close-button");
+      var ipanelClose = $(".ipanel-close");
 
-        $("button ,a").on("click",function(){
-          var el  = $(this).attr("ak-toggle");
-          var directions = iPanelDir(el);
-          if ($(el).hasClass("hidden") ){
-              iPanel.closeAll(directions);
-              iPanel.open(el,directions);
-          }else{
-              iPanel.close(el,directions);}
-        });
-
-        closeBtn.on("click",function(){
-          var dir = iPanelDir($(this).parent());
-          var el  = '#'+$(this).parent().attr("id");
-          iPanel.close(el,dir);
-        });
+    $('body').on('click',"button ,a",function(){
+    var el  = $(this).attr("ak-toggle");
+    var directions = iPanelDir(el);
+    if ($(el).hasClass("hidden") ){
+        iPanel.closeAll(directions);
+        iPanel.open(el,directions);
+    }else{
+        iPanel.close(el,directions);}
+  });
 
 
-        $('.close-all-panels')
-             .hammer({ prevent_default: true })
-             .on("swipe click swipedown",function(evt) {
-               if ( $(evt.target).closest('.ipanel').length ||
-                    $(evt.target).closest('button').length  ||
-                    $(evt.target).closest('.modal').length  ||
-                    $(evt.target).closest('a').length )
-                   return;
-               iPanel.closeAll(null);
-         });
+  ipanelClose.on("click",function(){
+    var dir = iPanelDir($(this).closest('.ipanel'));
+    var el  = '#'+$(this).closest('.ipanel').attr("id");
+    iPanel.close(el,dir);
+  })
+
+  closeBtn.on("click",function(){
+    var dir = iPanelDir($(this).parent());
+    var el  = '#'+$(this).parent().attr("id");
+    iPanel.close(el,dir);
+  });
+
+
+  $('.close-all-panels')
+       .hammer({ prevent_default: true })
+       .on("swipe click",function(evt) {
+         if ( $(evt.target).closest('.ipanel').length ||
+              $(evt.target).closest('button').length  ||
+              $(evt.target).closest('.modal').length  ||
+              $(evt.target).closest('input').length   ||
+              $(evt.target).closest('a').length)
+             return;
+         iPanel.closeAll(null);
+   });
 
     }
     handleEvents();
@@ -14692,27 +14701,82 @@ jQuery.iPanel = function() {
 });
 
 
+
 /*Loading map*/
 $(function (){
-  'use strict';
-	Microsoft.Maps.loadModule('Microsoft.Maps.Overlays.Style', { callback: function(){
-		var map = new Microsoft.Maps.Map(document.getElementById('map'), {
-				credentials:'Av9JcLdtfrLzO-_ITZjWvMgjmr-8ChIJ6kl0MBCHvJEWJwq8K2zES5Aue9umfftz',
-				center: new Microsoft.Maps.Location(47.5, -122.3),
-				customizeOverlays: true,
-				showBreadcrumb: false,
-				mapTypeId: Microsoft.Maps.MapTypeId.auto,
-				enableSearchLogo: false	,
-				zoom: 12
-		})}})});
+   'use strict';
 
+
+   var shapeLayer = new Microsoft.Maps.EntityCollection();
+   var edittingLayer = new Microsoft.Maps.EntityCollection();
+
+
+    var map = new Microsoft.Maps.Map(document.getElementById("map"), {
+       credentials:'Av9JcLdtfrLzO-_ITZjWvMgjmr-8ChIJ6kl0MBCHvJEWJwq8K2zES5Aue9umfftz',
+       center: new Microsoft.Maps.Location(47.5, -122.3),
+       customizeOverlays: true,
+       showBreadcrumb: false,
+       mapTypeId: Microsoft.Maps.MapTypeId.auto,
+       enableSearchLogo: false	,
+       showDashboard: false,
+       zoom: 10
+    });
+
+
+    $(".zoom-in").on("click",function(){
+      map.setView({zoom:map.getZoom()+1});
+    });
+
+
+    $(".zoom-out").on("click",function(){
+        var cz = map.getZoom();
+        if ( cz > 4 )
+          map.setView({zoom:map.getZoom()-1});
+    });
+
+    document.getElementById("map").addEventListener("contextmenu", function(e){
+    e.preventDefault();
+    }, false);
+
+
+    Microsoft.Maps.registerModule("WKTModule", "http://localhost:3000/my.eagleigps.com.local/assets/js/WKTModule.min.js");
+    Microsoft.Maps.loadModule("WKTModule");
+
+    //Register and load the Drawing Tools Module
+    Microsoft.Maps.registerModule("DrawingToolsModule", "http://localhost:3000/my.eagleigps.com.local/assets/js/geofence.js");
+
+    Microsoft.Maps.loadModule("DrawingToolsModule", {
+        callback: function () {
+            var drawingTools = new DrawingTools.DrawingManager(map,shapeLayer,edittingLayer, {
+                toolbarContainer: document.getElementById('toolbarContainer'),
+                events: {
+                    drawingEnded: function (s) {
+                        var wkt = WKTModule.Write(s);
+                        console.log(s);
+                    },
+                    drawingChanged: function (s) {
+                        var wkt = WKTModule.Write(s);
+                        console.log(wkt);
+                    },
+                    drawingSelected:function(shape){
+                        var locs = shape.getLocations();
+                        console.log(shape);
+                    },
+
+                    drawingErased : function(s){
+                        var wkt = WKTModule.Write(s);
+                        console.log(wkt);
+                    }
+                }
+            });
+        }
+    });
+});
 
 /*UI: handle events on the map*/
 $(function () {
 	'use strict';
 	var refreshTime =4000;
-
-
 	var goOffline = function(){
 		var offlineui = $(".offline-ui");
 		offlineui.
@@ -14740,6 +14804,88 @@ $(function () {
 	  	$('[data-toggle="tooltip"]').tooltip();}
 
 
+  var rows= [];
+
+  for(var i = 1; i <= 1000; i++){
+  rows.push({
+    values: [i, 'Truck' + i  ],
+    markup:   '<div class="unit-list border-bottom container-fluid" uid="'+i+'">' +
+                '<div class="row"><div class="col-xs-7 pad-top unit-name">Truck' + i + '</div>'+
+                '<div class="col-xs-1"><i class="fa fa-ix fa-arrow-circle-up fa-rotate-45r" aria-hidden="true"></i></div>'+
+                '<div class="col-xs-2 show-details"><a href="#" ak-toggle="#monitor-panel"><i class="fa fa-ix fa-bar-chart" aria-hidden="true"></i></a></div>'+
+                '</div></a>' +
+                '<div class="row">'+
+                    '<div class="col-xs-7 small pad-top">2016-09-01 04:21 PM</div>' +
+                    '<div class="col-xs-4 small pad-top">'+ Math.floor((Math.random() * 100) + 1)+'  km/h</div>'+
+                '</div>' +
+              '</div>',
+    active: true
+  })}
+
+  var contentArea= $("#contentArea");
+  if ( typeof(contentArea) != 'undefined' ){
+  contentArea.hammer().on('click tap', '.unit-list', function() {
+      $(".active-unit").removeClass("active-unit");
+      $(this).addClass("active-unit");
+  });
+
+  contentArea.hammer().on('mouseover tap', '.unit-list', function() {
+      var showdetails = $(".show-details");
+      showdetails.hide();
+      $(this).find(".show-details").show();
+  })}
+
+
+
+  var filterRows = function(rows) {
+    var results = [];
+    for(var i = 0; i < rows.length; i++) {
+      if(rows[i].active) results.push(rows[i].markup)
+    }
+    return results;
+  }
+
+  var onUnitSearch = function(search) {
+    for(var i = 0 ; i < rows.length ; i++) {
+      var suitable = false;
+      for(var j = 0 ; j < rows[i].values.length; j++) {
+        if(rows[i].values[j].toString().indexOf(untiSearch.value) + 1)
+          suitable = true;
+      }
+      rows[i].active = suitable;
+    }
+    $(this).next().toggle(Boolean($(this).val()));
+    clusterize.update(filterRows(rows));
+  }
+
+  if ( typeof(untiSearch) != 'undefined' ){
+   untiSearch.oninput = onUnitSearch;
+   var searchclear=$(".searchclear");
+   searchclear.toggle(Boolean($(".searchinput").val()));
+   searchclear.click(function () {
+     $(this).prev().val('').focus();
+     $(this).hide();
+     onUnitSearch();
+   })}
+
+
+ var clusterize = new Clusterize({
+    rows:filterRows(rows),
+    scrollId: 'scrollArea',
+    contentId: 'contentArea'
+  });
+
+  $(".show-zone-toolbar").on("click",function(){
+      $("#toolbarContainer").removeClass("hidden");
+  })
+
+
+  $(".close-button").on("click",function(){
+      $(this).parent().
+          addClass('hidden');
+  });
+
+
 	setInterval($.ajax,refreshTime , {
 				url: 'map/getdata',
 				success: function(data){
@@ -14758,10 +14904,4 @@ $(function () {
         error: function(xhr){
         }}/*args passed to $.ajax*/
   )
-
-  var clusterize = new Clusterize({
-    rows_in_block:10,
-    scrollId: 'scrollArea',
-    contentId: 'contentArea'
-  });
 })
