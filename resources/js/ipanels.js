@@ -58,35 +58,44 @@ jQuery.iPanel = function() {
 
     var handleEvents = function(){
 
-        var closeBtn = $(".ipanel-close-button");
+      var closeBtn = $(".ipanel-close-button");
+      var ipanelClose = $(".ipanel-close");
 
-        $("button ,a").on("click",function(){
-          var el  = $(this).attr("ak-toggle");
-          var directions = iPanelDir(el);
-          if ($(el).hasClass("hidden") ){
-              iPanel.closeAll(directions);
-              iPanel.open(el,directions);
-          }else{
-              iPanel.close(el,directions);}
-        });
-
-        closeBtn.on("click",function(){
-          var dir = iPanelDir($(this).parent());
-          var el  = '#'+$(this).parent().attr("id");
-          iPanel.close(el,dir);
-        });
+    $('body').on('click',"button ,a",function(){
+    var el  = $(this).attr("ak-toggle");
+    var directions = iPanelDir(el);
+    if ($(el).hasClass("hidden") ){
+        iPanel.closeAll(directions);
+        iPanel.open(el,directions);
+    }else{
+        iPanel.close(el,directions);}
+  });
 
 
-        $('.close-all-panels')
-             .hammer({ prevent_default: true })
-             .on("swipe click swipedown",function(evt) {
-               if ( $(evt.target).closest('.ipanel').length ||
-                    $(evt.target).closest('button').length  ||
-                    $(evt.target).closest('.modal').length  ||
-                    $(evt.target).closest('a').length )
-                   return;
-               iPanel.closeAll(null);
-         });
+  ipanelClose.on("click",function(){
+    var dir = iPanelDir($(this).closest('.ipanel'));
+    var el  = '#'+$(this).closest('.ipanel').attr("id");
+    iPanel.close(el,dir);
+  })
+
+  closeBtn.on("click",function(){
+    var dir = iPanelDir($(this).parent());
+    var el  = '#'+$(this).parent().attr("id");
+    iPanel.close(el,dir);
+  });
+
+
+  $('.close-all-panels')
+       .hammer({ prevent_default: true })
+       .on("swipe click",function(evt) {
+         if ( $(evt.target).closest('.ipanel').length ||
+              $(evt.target).closest('button').length  ||
+              $(evt.target).closest('.modal').length  ||
+              $(evt.target).closest('input').length   ||
+              $(evt.target).closest('a').length)
+             return;
+         iPanel.closeAll(null);
+   });
 
     }
     handleEvents();
