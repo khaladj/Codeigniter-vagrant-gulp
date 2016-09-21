@@ -27,7 +27,8 @@ gulp.task('html', function(){
 
 gulp.task('browser-sync', function() {
 	browserSync.init({
-		proxy : 'http://192.168.2.127/my.eagleigps.com.local/index.php/',
+    //proxy : 'http://192.168.2.127/my.eagleigps.com.local/index.php/',
+    proxy : 'http://localhost/my.eagleigps.com.local/index.php/',
 	});
 });
 
@@ -52,7 +53,8 @@ gulp.task('sass', function() { 
              style: 'compressed',
              loadPath: [
                  config.sassPath + '/app.scss',
-                 config.bowerDir + '/bootstrap-sass-official/assets/stylesheets',
+                config.bowerDir + '/bootstrap-sass-official/assets/stylesheets',
+                config.bowerDir + '/c3/',
                 config.bowerDir + '/font-awesome/scss',
                 config.bowerDir + '/clusterize/',
              ]
@@ -73,6 +75,8 @@ gulp.task('js', function() {
                    config.bowerDir+'/hammerjs/hammer.js',
                    config.bowerDir+'/jquery-hammerjs/jquery.hammer.js',
                    config.bowerDir+'/clusterize/clusterize.js',
+                   config.bowerDir+'/d3/d3.js',
+                   config.bowerDir+'/c3/c3.js',
                    config.jsFiles
 
     ])

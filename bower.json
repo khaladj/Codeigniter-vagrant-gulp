@@ -17,6 +17,7 @@
     "bootstrap-sass-official": "~3.3.3",
     "font-awesome": "^4.6.3",
     "offline.js": "^1.0.1",
-    "clusterize": "^0.16.1"
+    "clusterize": "^0.17.0",
+    "c3": "^0.4.11"
   }
 }
