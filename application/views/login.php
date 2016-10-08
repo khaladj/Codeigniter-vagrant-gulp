@@ -6,12 +6,12 @@
 					<strong> Sign in to continue</strong>
 				</div>
 				<div class="panel-body">
-					<?php echo form_open('validatelogin'); ?>
+					<?php echo form_open('auth'); ?>
 					<fieldset>
 						<div class="row">
 							<div class="center-block">
 								<img class="profile-img"
-								src="../assets/images/logo.png" alt="">
+								src="assets/images/logo.png" alt="">
 							</div>
 						</div>
 						<div class="row">

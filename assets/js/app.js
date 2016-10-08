@@ -32696,6 +32696,7 @@ $(function () {
   })}
 
 
+
   //clear teh serach input by clicking / Tapping on the close btn on search
   if ( typeof(untiSearch) != 'undefined' ){
    untiSearch.oninput = onUnitSearch;
@@ -32731,6 +32732,7 @@ $(function () {
   });
 
 
+
  //init the chart
 	var chart = c3.generate({
     bindto: '#chart',
@@ -32748,9 +32750,13 @@ $(function () {
 	});
   chart.unload({ ids: ['data1,data2']});
 
+
+
+
   //add event listener to the unit-list chart ipanel-close-button
   $("#contentArea").on("click",".fa-bar-chart",function(){
      setTimeout(function(){
+			 chart.unload({ ids: ['data1,data2']});
       	chart.load({
       	  columns: [
       	    ['data1', 100, 100, 150, 120, 100, 40, 80],

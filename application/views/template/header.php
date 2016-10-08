@@ -1,8 +1,4 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed');
-require_once "test/bugsnag/guzzle.phar";
-require_once "test/bugsnag/bugsnag.phar";
-$bugsnag = Bugsnag\Client::make("8d62b3ed903b59de2e75f28386ee40ae");
-Bugsnag\Handler::register($bugsnag);?>
+<?php defined('BASEPATH') OR exit('No direct script access allowed');?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +7,6 @@ Bugsnag\Handler::register($bugsnag);?>
 	<link rel="stylesheet" href="<?php echo base_url("assets/css/app.css"); ?>" />
 	<script type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0"></script>
 	<script type="text/javascript" src="<?php echo base_url("assets/js/app.js"); ?>"></script>
-	<script src="//d2wy8f7a9ursnm.cloudfront.net/bugsnag-3.min.js" data-apikey="75fcfa068a74b10504d48d69a2b7afd3"></script>
 	<title>EagleiGPS</title>
 </head>
 
@@ -69,7 +64,6 @@ Bugsnag\Handler::register($bugsnag);?>
 
   <div class="ipanel ipanel-bottom hidden" id="monitor-panel">
       <span class="ipanel-close-button"><i class="fa fa-times" aria-hidden="true"></i></span>
-			<h1>Hello</h1>
 			<div id='chart'></div>
 	</div>
 <?php } ?>
