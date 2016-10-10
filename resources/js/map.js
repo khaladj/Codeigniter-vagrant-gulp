@@ -8,7 +8,6 @@ $(function (){
    var shapeLayer = new Microsoft.Maps.EntityCollection();
    var edittingLayer = new Microsoft.Maps.EntityCollection();
 
-
     var map = new Microsoft.Maps.Map(document.getElementById("map"), {
        credentials:'Av9JcLdtfrLzO-_ITZjWvMgjmr-8ChIJ6kl0MBCHvJEWJwq8K2zES5Aue9umfftz',
        center: new Microsoft.Maps.Location(47.5, -122.3),
@@ -36,7 +35,7 @@ $(function (){
     e.preventDefault();
     }, false);
 
-
+    Microsoft.Maps.loadModule('Microsoft.Maps.Traffic', {});
     Microsoft.Maps.registerModule("WKTModule", "http://localhost:3000/my.eagleigps.com.local/assets/js/WKTModule.min.js");
     Microsoft.Maps.loadModule("WKTModule");
 

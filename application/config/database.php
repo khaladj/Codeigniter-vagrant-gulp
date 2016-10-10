@@ -75,10 +75,14 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
+	//'hostname' => 'ae8bdb7e69910bb61a77f88136b3c8bd0f8265e8.rackspaceclouddb.com',
+	//'username' => 'eagleidbroot',
+	//'password' => 'ali!onsept20!6!',
+
+	'database' => 'eagleidb',
 	'hostname' => 'localhost',
 	'username' => 'root',
 	'password' => 'password',
-	'database' => 'eagleidb',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

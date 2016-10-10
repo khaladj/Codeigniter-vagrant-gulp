@@ -27,6 +27,7 @@
     display: block;
 }
 
+
 /* line 11, ../sass/offline-theme-slide-indicator.sass */
 .offline-ui {
     -webkit-border-radius: 4px 4px 0 0;
@@ -68,5 +69,13 @@
 }
 /* line 10, ../sass/offline-language-english-indicator.sass */
 .offline-ui.offline-ui-down .offline-ui-content:before {
+  @-webkit-keyframes blinker {
+    from { opacity: 1.0; }
+    to { opacity: 0.0; }
+  }
   content: "Offline";
+  -webkit-animation-name: blinker;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: cubic-bezier(.5, 0, 1, 1);
+  -webkit-animation-duration: 0.7s;
 }

@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1,user-scalable=0">
 	<link rel="stylesheet" href="<?php echo base_url("assets/css/app.css"); ?>" />
 	<script type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0"></script>
 	<script type="text/javascript" src="<?php echo base_url("assets/js/app.js"); ?>"></script>
@@ -64,5 +64,6 @@
 
   <div class="ipanel ipanel-bottom hidden" id="monitor-panel">
       <span class="ipanel-close-button"><i class="fa fa-times" aria-hidden="true"></i></span>
-  </div>
+			<div id='chart'></div>
+	</div>
 <?php } ?>
